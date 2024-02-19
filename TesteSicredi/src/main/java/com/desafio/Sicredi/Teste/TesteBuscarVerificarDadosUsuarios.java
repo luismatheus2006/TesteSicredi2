@@ -26,10 +26,10 @@ public class TesteBuscarVerificarDadosUsuarios {
 
         JSONArray users = jsonResponse.getBody().getObject().getJSONArray("users");
         assertTrue(users.length() > 0, "A lista de usuários não deve estar vazia.");
-        System.out.println("[Teste ListaDeUsuariosNaoEstaVazia] Status: " + jsonResponse.getStatus() + " - Passou");
+        System.out.println("A lista de usuarios não está vazia\nStatus: " + jsonResponse.getStatus() + " - Passou");
     }
     @Test
-    public void validacaoDeCamposImportantes() throws UnirestException, JSONException {
+    public void ValidacaoDeCamposImportantes() throws UnirestException, JSONException {
         HttpResponse<JsonNode> jsonResponse;
         try {
             jsonResponse = Unirest.get("https://dummyjson.com/users").asJson();
@@ -49,7 +49,7 @@ public class TesteBuscarVerificarDadosUsuarios {
     }
 
     @Test
-    public void filtragemPorIdInexistente() throws UnirestException {
+    public void FiltragemPorIdInexistente() throws UnirestException {
         HttpResponse<JsonNode> jsonResponse;
         try {
             jsonResponse = Unirest.get("https://dummyjson.com/users/12345").asJson();
@@ -59,10 +59,10 @@ public class TesteBuscarVerificarDadosUsuarios {
         }
 
         assertEquals(404, jsonResponse.getStatus(), "Esperava-se um status 404 Not Found para um ID inexistente.");
-        System.out.println("[Teste filtragemPorIdInexistente] Status: " + jsonResponse.getStatus() + " - Passou");
+        System.out.println("Teste de tentar buscar um usuario com id invalido foi um sucesso:\nStatus: " + jsonResponse.getStatus() + " - Passou");
     }
     @Test
-    public void filtragemPorIdExistente() throws UnirestException {
+    public void FiltragemPorIdExistente() throws UnirestException {
         HttpResponse<JsonNode> jsonResponse;
         try {
             jsonResponse = Unirest.get("https://dummyjson.com/users/1").asJson();
@@ -72,11 +72,11 @@ public class TesteBuscarVerificarDadosUsuarios {
         }
 
         assertEquals(200, jsonResponse.getStatus(), "Esperava-se um status 404 Not Found para um ID inexistente.");
-        System.out.println("[Teste filtragemPorIdExistente] Status: " + jsonResponse.getStatus() + " - Passou");
+        System.out.println("Teste de busca de usuario por Id sucesso:\nStatus: " + jsonResponse.getStatus() + " - Passou");
     }
 
     @Test
-    public void IntegridadeEFormatacaoDosDados() throws UnirestException, JSONException {
+    public void IntegridadeFormatacaoDosDados() throws UnirestException, JSONException {
         HttpResponse<JsonNode> jsonResponse;
         try {
             jsonResponse = Unirest.get("https://dummyjson.com/users").asJson();
@@ -94,6 +94,6 @@ public class TesteBuscarVerificarDadosUsuarios {
             assertTrue(user.has("username") && !user.optString("username").isEmpty(), "O campo 'username' é obrigatório e não deve estar vazio.");
             assertTrue(user.has("password") && !user.optString("password").isEmpty(), "O campo 'password' é obrigatório e não deve estar vazio.");
         }
-        System.out.println("[IntegridadeEFormatacaoDosDados] Status: " + jsonResponse.getStatus() + " - Passou");
+        System.out.println("Informações importantes existem nos dados\nStatus: " + jsonResponse.getStatus() + " - Passou");
     }
 }

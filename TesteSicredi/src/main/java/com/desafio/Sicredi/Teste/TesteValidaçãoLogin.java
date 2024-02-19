@@ -21,7 +21,7 @@ public class TesteValidaçãoLogin {
      * Verifica se a API retorna status 200 OK e se um token de autenticação é recebido.
      */
     @Test
-    public void loginComCredenciaisValidas() {
+    public void LoginComCredenciaisValidas() {
         try {
             // Envia uma requisição POST com credenciais válidas.
             HttpResponse<JsonNode> response = Unirest.post("https://dummyjson.com/auth/login")
@@ -36,7 +36,7 @@ public class TesteValidaçãoLogin {
             JSONObject jsonResponse = response.getBody().getObject();
             assertNotNull(jsonResponse.getString("token"), "Um token de autenticação deve ser recebido após o login bem-sucedido.");
 
-            System.out.println("Login com Credenciais Válidas: Sucesso");
+            System.out.println("Login com Credenciais Válidas foi um sucesso\nStatus:" +response.getStatus());
         } catch (UnirestException e) {
             fail("Erro durante o teste de login: " + e.getMessage());
         }
@@ -47,7 +47,7 @@ public class TesteValidaçãoLogin {
      * Verifica se a API retorna status 401 Unauthorized ou 400 Bad Request.
      */
     @Test
-    public void loginComCredenciaisInvalidas() {
+    public void LoginComCredenciaisInvalidas() {
         try {
             // Envia uma requisição POST com credenciais inválidas.
             HttpResponse<JsonNode> response = Unirest.post("https://dummyjson.com/auth/login")
@@ -58,7 +58,7 @@ public class TesteValidaçãoLogin {
             // Verifica se o status da resposta indica falha de autenticação.
             assertEquals(400, response.getStatus(), "A resposta deve ser 401 Unauthorized ou 400 Bad Request para credenciais inválidas.");
 
-            System.out.println("Login com Credenciais Inválidas: Sucesso\nStatus: "+ response.getStatus());
+            System.out.println("Login com Credenciais  ivalidas resultou em erro:\nStatus: "+ response.getStatus());
         } catch (UnirestException e) {
             fail("Erro durante o teste de login com credenciais inválidas: " + e.getMessage());
         }
@@ -91,7 +91,7 @@ public class TesteValidaçãoLogin {
      * Verifica se o token permite o acesso a endpoints protegidos da API.
      */
     @Test
-    public void validadeDoToken() {
+    public void ValidadeDoToken() {
         try {
             // Primeiro, realiza o login para obter o token de autenticação usando credenciais válidas.
             HttpResponse<JsonNode> loginResponse = Unirest.post("https://dummyjson.com/auth/login")
@@ -113,7 +113,7 @@ public class TesteValidaçãoLogin {
             // Verifica se o acesso ao endpoint protegido é bem-sucedido com o token.
             assertEquals(200, protectedResponse.getStatus(), "O token deve ser aceito e válido para acessar endpoints protegidos.");
 
-            System.out.println("Validade do Token: Sucesso");
+            System.out.println("Token foi validado com sucesso na API protegida \nStatus:" + protectedResponse.getStatus());
         } catch (UnirestException e) {
             fail("Erro durante o teste de validade do token: " + e.getMessage());
         }

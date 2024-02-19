@@ -39,7 +39,7 @@ public class TesteBuscarStatusAplicação {
         assertEquals(404, response.getStatus(), "A resposta deve ter status 404 para indicar que o endpoint não foi encontrado.");
 
         // Imprime o status da resposta para verificação
-        System.out.println("A requisição incorreta deu erro\nStatus: " + response.getStatus() + "\nNot Found");
+        System.out.println("A requisição incorreta gerou um erro.\nStatus: " + response.getStatus() + "\nNot Found");
 
         // Verifica se o Content-Type da resposta indica um conteúdo JSON antes de tentar analisá-lo
         String contentType = response.getHeaders().getFirst("Content-Type");
@@ -63,7 +63,7 @@ public class TesteBuscarStatusAplicação {
         HttpResponse<String> response = Unirest.post("https://dummyjson.com/test").asString();
 
         // Verifica se o status HTTP da resposta é 405, indicando que o método não é permitido
-        assertEquals(405, response.getStatus(), "A resposta deve ter status 405 para indicar Método Não Permitido.");
+        assertEquals(405, response.getStatus(), "\n\nA resposta deve ter status 405 para indicar Método Não Permitido.");
 
         // Verifica se a resposta contém uma mensagem indicando que o método HTTP utilizado não é suportado
         String contentType = response.getHeaders().getFirst("Content-Type");

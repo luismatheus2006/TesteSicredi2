@@ -81,6 +81,6 @@ public class TesteBuscarProdutos {
         assertEquals(100, totalDeProdutos, "O total de produtos listado no response deve ser 100.");
 
         // Imprime uma mensagem de sucesso no console se o teste passar.
-        System.out.println("Teste verificarTotalDeProdutosNoResponse concluído com sucesso. Total de produtos: " + totalDeProdutos);
+        System.out.println("Teste verificarTotalDeProdutosNoResponse concluído com sucesso.\nTotal de produtos: " + totalDeProdutos);
     }
 }

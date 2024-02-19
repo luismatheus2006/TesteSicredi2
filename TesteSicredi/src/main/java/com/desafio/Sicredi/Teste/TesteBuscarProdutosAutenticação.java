@@ -39,7 +39,7 @@ public class TesteBuscarProdutosAutenticação {
             assertNotNull(products, "Deve retornar uma lista de produtos.");
             assertTrue(products.length() > 0, "A lista de produtos não deve estar vazia.");
 
-            System.out.println("Acesso com Token Válido: Sucesso - " + products.length() + " produtos retornados.");
+            System.out.println("Teste:Acesso com token válido: sucesso - " + products.length() + " produtos retornados.\nStatus: " + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro na requisição: " + e.getMessage());
         }
@@ -58,7 +58,7 @@ public class TesteBuscarProdutosAutenticação {
             // Verifica se o status da resposta indica falha de autenticação.
             assertEquals(403, response.getStatus(), "A resposta deve ser 401 Unauthorized ou 403 Forbidden para requisições sem token de autenticação.");
 
-            System.out.println("Sem Token de Autenticação: Sucesso - Acesso negado conforme esperado.");
+            System.out.println("Teste: Sem Token de autenticação o acesso negado conforme esperado.\nStatus: " + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro na requisição sem token de autenticação: " + e.getMessage());
         }
@@ -78,7 +78,7 @@ public class TesteBuscarProdutosAutenticação {
             // Verifica se o status da resposta indica token inválido.
             assertTrue(response.getStatus() == 401 , "A resposta deve ser 401 Unauthorized ou 403 Forbidden para token inválido.");
 
-            System.out.println("Token de Autenticação Inválido: Sucesso - Acesso negado conforme esperado.");
+            System.out.println("Teste: token de Autenticação Inválido o Acesso negado conforme esperado.\nStatus: " + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro na requisição com token de autenticação inválido: " + e.getMessage());
         }
@@ -87,7 +87,7 @@ public class TesteBuscarProdutosAutenticação {
      * Verifica a estrutura dos dados dos produtos retornados, incluindo a presença dos campos essenciais.
      */
     @Test
-    public void estruturaDosDadosDosProdutos() {
+    public void EstruturaDosDadosDosProdutos() {
         try {
             Login.main(null);
             // Envia uma requisição GET com um token válido.
@@ -106,7 +106,7 @@ public class TesteBuscarProdutosAutenticação {
                 assertTrue(product.has("id") && product.has("title") && product.has("price"), "Cada produto deve conter os campos 'id', 'title' e 'price'.");
             }
 
-            System.out.println("Estrutura dos Dados dos Produtos: Sucesso - Estrutura de dados validada.");
+            System.out.println("Teste: Estrutura dos dados dos produtos, estrutura de dados validada.\nStatus:" + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro na validação da estrutura de dados dos produtos: " + e.getMessage());
         }
@@ -116,7 +116,7 @@ public class TesteBuscarProdutosAutenticação {
      * Valida os campos dos produtos retornados, como verificar se os preços dos produtos são positivos.
      */
     @Test
-    public void validacaoDeCamposDosProdutos() {
+    public void ValidacaoDeCamposDosProdutos() {
         try {
             Login.main(null);
             // Envia uma requisição GET com um token válido.
@@ -144,7 +144,7 @@ public class TesteBuscarProdutosAutenticação {
 
             }
 
-            System.out.println("Validação de Campos dos Produtos: Sucesso - Todos os produtos têm preços positivos.");
+            System.out.println("Teste:Validação de campos dos produtos, todos os produtos têm preços positivos.\nStatus: " + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro na validação dos campos dos produtos: " + e.getMessage());
         }

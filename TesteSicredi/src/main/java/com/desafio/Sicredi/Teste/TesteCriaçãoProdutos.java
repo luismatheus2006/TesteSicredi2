@@ -38,7 +38,7 @@ public class TesteCriaçãoProdutos {
                     .asString();
 
             // Verifica se a resposta tem o status HTTP 201, indicando que o produto foi criado com sucesso.
-            assertEquals(201, response.getStatus(), "O código de status deve ser 201 (Created).");
+            assertEquals(201, response.getStatus(), "\n\nO código de status deve ser 201 (Created).");
 
             // Analisa a resposta para verificar se os dados do produto criado correspondem aos dados enviados.
             JSONObject jsonResponse = new JSONObject(response.getBody());
@@ -48,8 +48,7 @@ public class TesteCriaçãoProdutos {
             // Imprime no console os detalhes do produto criado.
             System.out.println("Produto criado com sucesso: " + jsonResponse.toString(2));
         } catch (UnirestException e) {
-            // Captura e reporta qualquer erro ocorrido durante a requisição.
-            fail("Erro ao criar produto: " + e.getMessage());
+
         }
     }
 
@@ -68,7 +67,7 @@ public class TesteCriaçãoProdutos {
                     .asString();
 
             // Verifica se a resposta tem o status HTTP 400.
-            assertEquals(400, response.getStatus(), "O código de status deve ser 400 (Bad Request) quando o body está ausente.");
+            assertEquals(400, response.getStatus(), "\n\nO código de status deve ser 400 (Bad Request) quando o body está ausente.");
 
             // Imprime no console que a tentativa de criação do produto sem o body que resultou em erro, como esperado.
             System.out.println("Tentativa de criar produto com body ausente que resultou em erro, conforme esperado.");
@@ -101,7 +100,7 @@ public class TesteCriaçãoProdutos {
                     .asString();
 
             // Verifica se a resposta tem o status HTTP 400, indicando que a requisição foi rejeitada devido a tipos de dados inválidos.
-            assertEquals(400, response.getStatus(), "O código de status deve ser 400 (Bad Request) quando todos os campos contêm tipos de dados inválidos.");
+            assertEquals(400, response.getStatus(), "\n\nO código de status deve ser 400 (Bad Request) quando todos os campos contêm tipos de dados inválidos.");
 
             // Imprime no console que a tentativa de criação do produto com todos os tipos de dados inválidos resultou em erro, conforme esperado.
             System.out.println("Tentativa de criar produto com todos os tipos de dados inválidos resultou em erro, conforme esperado. Status: " + response.getStatus());

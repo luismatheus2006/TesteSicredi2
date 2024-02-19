@@ -25,8 +25,7 @@ public class TesteBuscarProdutoPorID {
 
             // Verifica se o status da resposta é 200 OK, indicando sucesso na busca
             assertEquals(200, response.getStatus(), "A resposta deve ser 200 OK para um ID de produto válido.");
-            System.out.println("TesteProdutoComIdValido: Status " + response.getStatus());
-
+            System.out.println("Teste buscar produto com Id valido:\nStatus " + response.getStatus());
             // Verifica se os dados do produto correspondem ao ID solicitado
             JSONObject product = new JSONObject(response.getBody());
             assertEquals(produtoId, product.getInt("id"), "O ID do produto retornado deve corresponder ao solicitado.");
@@ -47,7 +46,7 @@ public class TesteBuscarProdutoPorID {
 
             // Verifica se o status da resposta é 404 Not Found
             assertEquals(404, response.getStatus(), "A resposta deve ser 404 Not Found para um ID de produto inexistente.");
-            System.out.println("TesteProdutoComIdInexistente: Status " + response.getStatus());
+            System.out.println("Teste produto com id inexistente:\nStatus " + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro ao fazer a requisição com ID inexistente: " + e.getMessage());
         }
@@ -65,7 +64,7 @@ public class TesteBuscarProdutoPorID {
 
             // Verifica se o status da resposta é 404 Not Found ou 400 Bad Request
             assertEquals(404, response.getStatus(), "A resposta deve ser 400 Bad Request ou 404 Not Found para um ID de produto inválido.");
-            System.out.println("TesteProdutoComIdInvalido: Status " + response.getStatus());
+            System.out.println("Teste produto com id invalido:\nStatus " + response.getStatus());
         } catch (UnirestException e) {
             fail("Erro ao fazer a requisição com ID inválido: " + e.getMessage());
         }
